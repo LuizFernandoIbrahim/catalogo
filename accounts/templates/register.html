@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registre-se</title>
+</head>
+<body>
+    <form method="POST">
+        {% csrf_token %}
+
+        <div class="form_group">
+        {{ user_form.username.errors}}
+        <label>Usuário:</label>
+        {{ user_form.username }}
+        </div>
+
+        <div class="form_group">
+            {{ user_form.password1.errors }}
+            <label>Senha:</label>
+            {{ user_form.password1 }}
+        </div>
+
+        <div class="form_group">
+           {{ user_form.password2.errors }}
+            <label>Confirme sua Senha:</label>
+            {{ user_form.password2 }}
+        </div>
+
+        <div class="form_group">
+            {{ user_form.email.errors }}
+            <label>Seu e-mail:</label>
+            {{ user_form.email }}
+        </div>
+        <div class = "form_group">
+            <input type= "submit" value="Cadastrar">
+        </div>
+
+       
+    </form>    
+</body>
+</html>

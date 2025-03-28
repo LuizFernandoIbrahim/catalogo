@@ -1,17 +1,12 @@
-/* ===========================
-   GERAL
-=========================== */
 body {
-    font-family: 'Montserrat', sans-serif;
     margin: 0;
-    padding: 40px;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
     background-color: #f4f4f4;
     color: #0c1b33;
 }
 
-/* ===========================
-   CONTAINER
-=========================== */
+/*CONTAINER*/
 .container {
     background-color: #ffffff;
     padding: 30px;
@@ -27,9 +22,7 @@ body {
     color: #0b1c39;
 }
 
-/* ===========================
-   FORMULÁRIO
-=========================== */
+/*FORMULÁRIO*/
 form {
     display: flex;
     flex-direction: column;
@@ -68,9 +61,7 @@ form button:hover {
     background-color: #1c2e50;
 }
 
-/* ===========================
-   LINK VOLTAR
-=========================== */
+/*LINK VOLTAR */
 a {
     display: block;
     margin-top: 20px;
@@ -82,21 +73,4 @@ a {
 
 a:hover {
     text-decoration: underline;
-}
-
-/* ===========================
-   RESPONSIVO
-=========================== */
-@media (max-width: 600px) {
-    body {
-        padding: 20px;
-    }
-
-    .container {
-        padding: 20px;
-    }
-
-    form button {
-        width: 100%;
-    }
 }

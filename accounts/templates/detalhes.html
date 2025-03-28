@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalhes do Produto</title>
+    <link rel="stylesheet" href="{% static 'css/detalhes.css' %}">
+</head>
+<body>
+    {% load static %}
+    
+    {% include 'base.html' %}
+
+    <!-- CONTEÚDO DO PRODUTO -->
+    <div class="container">
+        <h1 id="produto-nome"></h1>
+        <img id="produto-imagem" src="" alt="Imagem do Produto">
+        <p id="produto-preco" class="price"></p>
+        <p id="produto-categoria" class="category"></p>
+        {% if user.is_authenticated and user.is_superuser %}
+            <button id="editar-produto">Editar Produto</button> 
+        {% endif %}
+        <br>
+        <a href="{% url 'catalogo' %}">← Voltar ao Catálogo</a>
+      
+    </div>
+
+    <script>
+        const product = JSON.parse(localStorage.getItem("selectedProduct"));
+        if (product) {
+            document.getElementById("produto-nome").textContent = product.name;
+            document.getElementById("produto-imagem").src = product.image;
+            document.getElementById("produto-imagem").alt = product.name;
+            document.getElementById("produto-preco").textContent = `Preço: R$ ${product.price}`;
+            document.getElementById("produto-categoria").textContent = `Categoria: ${product.category}`;
+        } else {
+            document.querySelector('.container').innerHTML = "<p>Produto não encontrado.</p>";
+        }
+
+        document.getElementById("editar-produto").addEventListener("click", () => {
+            window.location.href = "{% url 'editar_produto' %}";
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NAVBAR</title>
+</head>
+<body>
+    {% load static %}
+    <nav class="navbar">
+        <div class="navbar-container">
+            <img src="{% static 'img/logoav.png' %}" alt="Logo AV" class="logo">
+
+            <div class="nav-links">
+                <a href="{% url 'home' %}">Home</a>
+                <a href="{% url 'catalogo' %}">Catálogo</a>
+                {% if user.is_authenticated and user.is_superuser %}
+                    <a href="{% url 'painel' %}">Painel</a>
+                {% endif %}
+            </div>
+
+            <div class="auth-buttons">
+                {% if user.is_authenticated %}
+                    <a href="{% url 'logout' %}">
+                        <button class="logout-btn">Logout</button>
+                    </a>
+                {% else %}
+                    <a href="{% url 'login' %}">
+                        <button>Login</button>
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+    <style>
+        /* Navbar padrão */
+.navbar {
+    width: 100%;
+    background-color: #0b1c39;
+    padding: 15px 20px;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar-container {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    height: 40px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+}
+
+.auth-buttons {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.auth-buttons button {
+    background-color: white;
+    color: #0b1c39;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.auth-buttons .logout-btn {
+    background-color: red;
+    color: white;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .navbar-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+    }
+
+    .auth-buttons {
+        flex-wrap: wrap;
+    }
+}
+
+    </style>
+</body>
+</html>

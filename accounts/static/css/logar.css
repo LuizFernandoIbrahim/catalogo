@@ -1,0 +1,126 @@
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f8f9fa;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.top-button-inside {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 15px;
+}
+
+.home-btn-inside {
+    background-color: transparent;
+    color: #0D192E;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 6px 0;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.home-btn-inside:hover {
+    color: #1a2a45;
+    text-decoration: underline;
+}
+
+
+.wrapper {
+    display: flex;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    max-width: 1000px;
+    width: 90%;
+}
+
+.image-side {
+    flex: 1;
+    background-color: #eaf6fb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+
+.image-side img {
+    max-width: 100%;
+    height: auto;
+}
+
+.form-side {
+    flex: 1;
+    padding: 50px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.form-box h2 {
+    text-align: left;
+    font-size: 26px;
+    margin-bottom: 30px;
+    color: #0d1b2a;
+    font-weight: bold;
+}
+
+.form_group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form_group label {
+    font-weight: 500;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.form_group input[type="text"],
+.form_group input[type="password"],
+.form_group input[type="email"] {
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #0d1b2a;
+    font-size: 14px;
+    outline: none;
+}
+
+.btn {
+    width: 100%;
+    background-color: #0d1b2a;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #1c2c4c;
+}
+
+.login-link {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+    color: #333;
+}
+
+.login-link a {
+    font-weight: bold;
+    color: #0d1b2a;
+    text-decoration: none;
+}

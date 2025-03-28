@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo</title>
+    <link rel="stylesheet" href="{% static 'css/catalogo.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <script defer src="{% static 'js/catalogo.js' %}"></script>
+</head>
+<body>
+    {% include 'base.html' %}
+
+    <section class="catalog">
+        <h2>Catálogo de Produtos</h2>
+        <div class="filter-bar">
+            <input type="text" id="search-input" placeholder="Pesquisar Produto">
+            <select id="category-filter">
+                <option value="all">Todas as Categorias</option>
+            </select>
+            <button id="clear-filter">LIMPAR FILTRO</button>
+        </div>
+
+        <div id="product-list" class="product-grid">
+            <!-- Produtos inseridos dinamicamente via JS -->
+        </div>
+    </section>
+</body>
+</html>

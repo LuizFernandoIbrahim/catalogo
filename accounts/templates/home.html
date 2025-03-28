@@ -1,0 +1,29 @@
+{% load static %}
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Produtos</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    {% load static %}
+    
+    {% include 'base.html' %}
+
+
+    <section class="hero">
+        <div class="content">
+            <h1>Conheça o melhor <br> <strong>catálogo de produtos</strong></h1>
+            <p>Facilidade para encontrar os melhores produtos do mercado.</p>
+            <div class="search-box">
+                <a href="{% url 'catalogo' %}" class="search-button">Inicie agora sua busca</a>
+            </div>
+        </div>
+        <div class="image">
+            <img src="{% static 'img/image.png' %}" alt="Pessoa usando computador">
+        </div>
+    </section>
+</body>
+</html>

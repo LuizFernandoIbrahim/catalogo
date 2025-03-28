@@ -1,0 +1,227 @@
+/* ===========================
+   GERAL
+=========================== */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f4f4f4;
+    color: #0c1b33;
+}
+
+/* ===========================
+   NAVBAR FIXA
+=========================== */
+.navbar {
+    width: 100%;
+    background-color: #0b1c39;
+    padding: 15px 20px;
+    margin: 0;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    height: 40px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    flex-wrap: wrap; /* 👈 permite quebrar linha em telas menores */
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+}
+
+.nav-links button {
+    margin-right: 0; /* ou simplesmente remova essa linha */
+    font-weight: bold;
+}
+
+.nav-links button:hover {
+    opacity: 0.8;
+}
+
+/* ===========================
+   CATÁLOGO
+=========================== */
+.catalog {
+    padding: 20px;
+    background: white;
+    max-width: 1100px;
+    margin: 30px auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.catalog h2 {
+    text-align: center;
+    font-size: 28px;
+    color: #0b1c39;
+    margin-bottom: 25px;
+}
+
+/* ===========================
+   FILTRO
+=========================== */
+.filter-bar {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.filter-bar input,
+.filter-bar select,
+.filter-bar button {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+.filter-bar input {
+    width: 250px;
+}
+
+.filter-bar select {
+    width: 200px;
+}
+
+.filter-bar button {
+    background: #0b1c39;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.filter-bar button:hover {
+    background: #0a1631;
+}
+
+/* ===========================
+   GRID DE PRODUTOS
+=========================== */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    justify-content: center;
+}
+
+/* ===========================
+   CARD DO PRODUTO
+=========================== */
+.product-card {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.2s ease-in-out;
+}
+
+.product-card:hover {
+    transform: scale(1.03);
+}
+
+.product-card img {
+    width: 100%;
+    border-radius: 5px;
+    max-height: 180px;
+    object-fit: contain;
+}
+
+.product-card h3 {
+    font-size: 18px;
+    margin: 10px 0;
+    color: #333;
+}
+
+.product-card .price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #0b1c39;
+    margin: 10px 0;
+}
+
+.product-card .category {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.product-card .description {
+    font-size: 14px;
+    color: #555;
+    margin: 10px 0;
+}
+
+.details-btn {
+    background: #0b1c39;
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.details-btn:hover {
+    background: #0a1631;
+}
+
+/* ===========================
+   NENHUM PRODUTO
+=========================== */
+#product-list p {
+    text-align: center;
+    font-size: 18px;
+    color: #666;
+}
+
+/* ===========================
+   RESPONSIVIDADE
+=========================== */
+@media (max-width: 768px) {
+    .navbar-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+    }
+
+    .catalog {
+        margin: 20px;
+    }
+
+    .filter-bar input,
+    .filter-bar select {
+        width: 100%;
+    }
+}

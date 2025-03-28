@@ -1,42 +1,55 @@
+
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registre-se</title>
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="{% static 'css/registro.css' %}">
 </head>
 <body>
-    <form method="POST">
-        {% csrf_token %}
-
-        <div class="form_group">
-        {{ user_form.username.errors}}
-        <label>Usuário:</label>
-        {{ user_form.username }}
+    <div class="wrapper">
+        <div class="image-side">
+            <img src="{% static 'img/illustration.png' %}" alt="Cadastro Ilustração">
         </div>
 
-        <div class="form_group">
-            {{ user_form.password1.errors }}
-            <label>Senha:</label>
-            {{ user_form.password1 }}
-        </div>
+        <div class="form-side">
+            <form method="POST" class="form-box">
+                <h2>Cadastre-se</h2>
+                {% csrf_token %}
 
-        <div class="form_group">
-           {{ user_form.password2.errors }}
-            <label>Confirme sua Senha:</label>
-            {{ user_form.password2 }}
-        </div>
+                <div class="form_group">
+                    {{ user_form.username.errors }}
+                    <label>Usuário</label>
+                    {{ user_form.username }}
+                </div>
 
-        <div class="form_group">
-            {{ user_form.email.errors }}
-            <label>Seu e-mail:</label>
-            {{ user_form.email }}
-        </div>
-        <div class = "form_group">
-            <input type= "submit" value="Cadastrar">
-        </div>
+                <div class="form_group">
+                    {{ user_form.password1.errors }}
+                    <label>Senha</label>
+                    {{ user_form.password1 }}
+                </div>
 
-       
-    </form>    
+                <div class="form_group">
+                    {{ user_form.password2.errors }}
+                    <label>Confirme sua senha</label>
+                    {{ user_form.password2 }}
+                </div>
+
+                <div class="form_group">
+                    {{ user_form.email.errors }}
+                    <label>Seu email</label>
+                    {{ user_form.email }}
+                </div>
+
+                <div class="form_group">
+                    <input type="submit" value="Cadastrar" class="btn">
+                </div>
+
+                <p class="login-link">Já tem uma conta? <a href="{% url 'login' %}">Entrar</a></p>
+            </form>
+        </div>
+    </div>
 </body>
 </html>

@@ -1,0 +1,102 @@
+/* ===========================
+   GERAL
+=========================== */
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 40px;
+    background-color: #f4f4f4;
+    color: #0c1b33;
+}
+
+/* ===========================
+   CONTAINER
+=========================== */
+.container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 500px;
+    margin: auto;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.container h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #0b1c39;
+}
+
+/* ===========================
+   FORMULÁRIO
+=========================== */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+form label {
+    font-weight: 600;
+}
+
+form input,
+form textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-family: 'Montserrat', sans-serif;
+    resize: vertical;
+}
+
+form button {
+    background-color: #0b1c39;
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #1c2e50;
+}
+
+/* ===========================
+   LINK VOLTAR
+=========================== */
+a {
+    display: block;
+    margin-top: 20px;
+    text-align: center;
+    text-decoration: none;
+    color: #0b1c39;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* ===========================
+   RESPONSIVO
+=========================== */
+@media (max-width: 600px) {
+    body {
+        padding: 20px;
+    }
+
+    .container {
+        padding: 20px;
+    }
+
+    form button {
+        width: 100%;
+    }
+}

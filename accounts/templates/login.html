@@ -1,18 +1,45 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="stylesheet" href="{% static 'css/logar.css' %}">
 </head>
 <body>
-    <form method="post">
-        {% csrf_token %}
-        <table id="tabela_login">
-            {{ login_form }}
-        </table>
-        <input type="submit" value="Acessar">
-
-    </form>    
+    <div class="wrapper">
+        <div class="image-side">
+            <img src="{% static 'img/illustration.png' %}" alt="Login Ilustração">
+        </div>
+    
+        <div class="form-side">
+            <div class="top-button-inside">
+                <a href="{% url 'logout' %}" class="home-btn-inside">← Voltar para a home</a>
+            </div>
+    
+            <form method="POST" class="form-box">
+                <h2>Login</h2>
+                {% csrf_token %}
+    
+                <div class="form_group">
+                    <label>Usuário</label>
+                    {{ login_form.username }}
+                </div>
+    
+                <div class="form_group">
+                    <label>Senha</label>
+                    {{ login_form.password }}
+                </div>
+    
+                <div class="form_group">
+                    <input type="submit" value="Logar" class="btn">
+                </div>
+    
+                <p class="login-link">Não tem uma conta? <a href="{% url 'register' %}"><strong>Criar conta</strong></a></p>
+            </form>
+        </div>
+    </div>
+    
 </body>
 </html>

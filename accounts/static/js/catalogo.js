@@ -3,73 +3,51 @@ document.addEventListener("DOMContentLoaded", () => {
     const categoryFilter = document.getElementById("category-filter");
     const searchInput = document.getElementById("search-input");
     const clearFilterBtn = document.getElementById("clear-filter");
-
-    let products = JSON.parse(localStorage.getItem("products")) || [];
-
-    function renderProducts(filteredProducts = products) {
-        productList.innerHTML = "";
-
-        if (filteredProducts.length === 0) {
-            productList.innerHTML = "<p>Nenhum produto encontrado.</p>";
-        } else {
-            filteredProducts.forEach((product, index) => {
-                productList.innerHTML += `
-                    <div class="product-card">
-                        <img src="${product.image}" alt="${product.name}">
-                        <h3>${product.name}</h3>
-                        <p class="price">R$ ${product.price}</p>
-                        <p class="category">Categoria: ${product.category}</p>
-                        <p class="description">${product.description || "Sem descrição disponível."}</p>
-                        <button class="details-btn" data-index="${index}">Ver Detalhes</button>
-                    </div>
-                `;
-            });
-
-            // Adiciona os eventos para os botões "Ver Detalhes"
-            const detailButtons = document.querySelectorAll(".details-btn");
-            detailButtons.forEach(button => {
-                button.addEventListener("click", (e) => {
-                    const index = e.target.dataset.index;
-                    const selectedProduct = filteredProducts[index];
-                    localStorage.setItem("selectedProduct", JSON.stringify(selectedProduct));
-                    window.location.href = "/detalhes/";
-                });
-            });
-        }
-    }
-
-    function loadCategories() {
-        const categories = [...new Set(products.map(p => p.category))];
-        categoryFilter.innerHTML = `<option value="all">Todas as Categorias</option>`;
-        categories.forEach(category => {
-            categoryFilter.innerHTML += `<option value="${category}">${category}</option>`;
-        });
-    }
+    const priceFilter = document.getElementById("price-filter");
 
     function filterProducts() {
-        let filtered = products;
+        const cards = productList.querySelectorAll(".product-card");
+        const searchValue = searchInput.value.toLowerCase();
+        const categoryValue = categoryFilter.value;
 
-        if (categoryFilter.value !== "all") {
-            filtered = filtered.filter(product => product.category === categoryFilter.value);
-        }
+        cards.forEach(card => {
+            const name = card.querySelector("h3").textContent.toLowerCase();
+            const category = card.dataset.category.toLowerCase();
 
-        if (searchInput.value.trim() !== "") {
-            filtered = filtered.filter(product =>
-                product.name.toLowerCase().includes(searchInput.value.toLowerCase())
-            );
-        }
+            const matchesName = name.includes(searchValue);
+            const matchesCategory = categoryValue === "all" || category === categoryValue;
 
-        renderProducts(filtered);
+            card.style.display = (matchesName && matchesCategory) ? "flex" : "none";
+        });
     }
-
-    categoryFilter.addEventListener("change", filterProducts);
-    searchInput.addEventListener("input", filterProducts);
     clearFilterBtn.addEventListener("click", () => {
         searchInput.value = "";
         categoryFilter.value = "all";
-        renderProducts();
+        priceFilter.value = "default";
+        filterProducts();
     });
 
-    renderProducts();
-    loadCategories();
+    categoryFilter.addEventListener("change", filterProducts);
+    searchInput.addEventListener("input", filterProducts);
+    priceFilter.addEventListener("change", () => {
+        const cards = Array.from(productList.querySelectorAll(".product-card"));
+
+        const getPrice = card => parseFloat(
+            card.querySelector(".price").textContent
+                .replace("R$", "")
+                .replace(".", "")
+                .replace(",", ".")
+        );
+
+        if (priceFilter.value === "low-to-high") {
+            cards.sort((a, b) => getPrice(a) - getPrice(b));
+        } else if (priceFilter.value === "high-to-low") {
+            cards.sort((a, b) => getPrice(b) - getPrice(a));
+        }
+
+        productList.innerHTML = "";
+        cards.forEach(card => productList.appendChild(card));
+    });
+
+    filterProducts();
 });

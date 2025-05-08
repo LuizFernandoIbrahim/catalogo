@@ -6,7 +6,7 @@ body {
     color: #0c1b33;
 }
 
-/*CATÁLOGO*/
+/* CATÁLOGO */
 .catalog {
     padding: 20px;
     background: white;
@@ -23,7 +23,7 @@ body {
     margin-bottom: 25px;
 }
 
-/*FILTRO */
+/* FILTRO */
 .filter-bar {
     display: flex;
     justify-content: center;
@@ -60,22 +60,25 @@ body {
     background: #0a1631;
 }
 
-/*GRID DE PRODUTOS */
-.product-grid {
+/* GRID DE PRODUTOS */
+#product-list.product-grid { /* Mais específico: ID e classe */
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
     justify-content: center;
 }
 
-/*CARD DO PRODUTO */
+/* CARD DO PRODUTO */
 .product-card {
     background: white;
-    padding: 15px;
     border-radius: 8px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     text-align: center;
     transition: transform 0.2s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 15px;
 }
 
 .product-card:hover {
@@ -85,53 +88,55 @@ body {
 .product-card img {
     width: 100%;
     border-radius: 5px;
-    max-height: 180px;
+    height: 150px;
     object-fit: contain;
+    margin-bottom: 10px;
 }
 
 .product-card h3 {
-    font-size: 18px;
-    margin: 10px 0;
+    font-size: 16px;
+    margin: 5px 0;
     color: #333;
 }
 
 .product-card .price {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
     color: #0b1c39;
-    margin: 10px 0;
+    margin: 5px 0;
 }
 
 .product-card .category {
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 10px;
+    font-size: 12px;
+    color: #005eff;
+    margin-bottom: 15px;
 }
 
-.product-card .description {
-    font-size: 14px;
-    color: #555;
-    margin: 10px 0;
+.product-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
 }
 
-.details-btn {
-    background: #0b1c39;
+.product-actions .details-button { /* Mais específico: dentro de .product-actions */
+    background-color: #0b1c39;
     color: white;
     border: none;
-    padding: 10px;
-    width: 100%;
+    padding: 8px 15px;
     border-radius: 5px;
     cursor: pointer;
-    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
 }
 
-.details-btn:hover {
-    background: #0a1631;
+.product-actions .details-button:hover { /* Mais específico: dentro de .product-actions */
+    background-color: #040913;
 }
 
-/*NENHUM PRODUTO */
+/* NENHUM PRODUTO */
 #product-list p {
     text-align: center;
     font-size: 18px;
-    color: #666;
+    color: #0b1c39;
 }

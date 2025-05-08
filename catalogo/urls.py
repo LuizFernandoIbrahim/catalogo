@@ -16,7 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from accounts.views import register_view, login_view, custom_logout, catalogo_view, home_view, painel_view, detalhes_view, editar_view
+from accounts.views import (
+    register_view, login_view, custom_logout, catalogo_view, home_view,
+    painel_view, detalhes_produto, carrinho_view, editar_view,
+    addcarrinho_view, remover_item_view, atualizar_item_view,
+    obter_carrinho_view, finalizar_compra_view
+)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,6 +32,12 @@ urlpatterns = [
     path('home/', home_view, name='home'),
     path('', home_view, name='home'),
     path('painel/', painel_view, name='painel'),
-    path('detalhes/', detalhes_view, name='detalhes'),
-    path('editar/', editar_view, name='editar_produto'),
+    path('produto/<int:produto_id>/', detalhes_produto, name='detalhes'),
+    path('carrinho/', carrinho_view, name='carrinho'),
+    path('editar/', editar_view, name='editar'),
+    path('addcarrinho/<int:produto_id>/adicionar/', addcarrinho_view, name='addcarrinho_view'),
+    path('carrinho/remover/<int:produto_id>/', remover_item_view, name='remover_item'),
+    path('carrinho/atualizar/<int:produto_id>/', atualizar_item_view, name='atualizar_item'),
+    path('carrinho/obter/', obter_carrinho_view, name='obter_carrinho'),
+    path('carrinho/finalizar/', finalizar_compra_view, name='finalizar_compra'),
 ]

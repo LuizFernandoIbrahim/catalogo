@@ -109,6 +109,7 @@
             <div class="nav-center">
                 <a href="{% url 'home' %}">Home</a>
                 <a href="{% url 'catalogo' %}">Catálogo</a>
+                <a href="{% url 'lista_pedidos' %}">Meus Pedidos</a>
                 {% if user.is_authenticated and user.is_superuser %}
                     <a href="{% url 'admin:index' %}">Painel</a>
                 {% endif %}

@@ -11,8 +11,9 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404
 from django.views.decorators.http import require_POST
-from .models import Produto
+from .models import Produto, Pedido, ItemPedido
 from django.views.decorators.csrf import csrf_exempt
+from decimal import Decimal
 import json
 
 @csrf_exempt
@@ -189,15 +190,68 @@ def finalizar_compra_view(request):
     carrinho = request.session.get("carrinho", {})
 
     if not carrinho:
-        return JsonResponse({"sucesso": False, "erro": "Seu carrinho está vazio."})
+        messages.error(request, "Seu carrinho está vazio.")
+        return redirect('carrinho') # Redireciona de volta ao carrinho
 
-    # Aqui você pode salvar o pedido no banco, enviar e-mail etc.
+    try:
+        pedido_total = Decimal('0.00')
+        itens_para_salvar = []
 
-    # Limpar carrinho da sessão após finalizar
-    request.session["carrinho"] = {}
+        # 1. Calcular total e preparar itens
+        for produto_id_str, quantidade in carrinho.items():
+            try:
+                produto = Produto.objects.get(id=produto_id_str, is_active=True)
+                subtotal_item = produto.preco * Decimal(quantidade)
+                pedido_total += subtotal_item
+                itens_para_salvar.append({
+                    'produto': produto,
+                    'nome_produto': produto.nome,
+                    'preco_item': produto.preco,
+                    'quantidade': quantidade
+                })
+            except Produto.DoesNotExist:
+                messages.error(request, f"Produto com ID {produto_id_str} não encontrado ou inativo.")
+                return redirect('carrinho')
 
-    return JsonResponse({
-        "sucesso": True,
-        "mensagem": "Compra finalizada com sucesso.",
-        "redirect": "/catalogo/"  # ou página de "Obrigado"
-    })
+        # 2. Criar o Pedido principal
+        novo_pedido = Pedido.objects.create(
+            usuario=request.user,
+            valor_total=pedido_total
+            # O status padrão já é 'aguardando_pagamento' (definido no model)
+        )
+
+        # 3. Criar os Itens do Pedido
+        for item_data in itens_para_salvar:
+            ItemPedido.objects.create(
+                pedido=novo_pedido,
+                produto=item_data['produto'],
+                nome_produto=item_data['nome_produto'],
+                preco_item=item_data['preco_item'],
+                quantidade=item_data['quantidade']
+            )
+
+        # 4. Limpar o carrinho da sessão APÓS salvar tudo
+        request.session["carrinho"] = {}
+
+        messages.success(request, f"Pedido #{novo_pedido.id} realizado com sucesso! Aguardando pagamento.")
+        # Redireciona para a nova lista de pedidos
+        return redirect('lista_pedidos')
+
+    except Exception as e:
+        messages.error(request, f"Ocorreu um erro ao finalizar a compra: {str(e)}")
+        return redirect('carrinho')
+
+@login_required
+def lista_pedidos_view(request):
+    pedidos = Pedido.objects.filter(usuario=request.user).prefetch_related('itens__produto') # Otimiza a busca
+    context = {'pedidos': pedidos}
+    # Usaremos o seu 'listapedidos.html' como base, mas ele precisa ser modificado (ver Passo 5)
+    return render(request, 'listapedidos.html', context)
+
+@login_required
+def detalhes_pedido_view(request, pedido_id):
+    # Garante que o usuário só veja seus próprios pedidos
+    pedido = get_object_or_404(Pedido.objects.prefetch_related('itens__produto'), id=pedido_id, usuario=request.user)
+    context = {'pedido': pedido}
+    # Você precisará criar o template 'detalhes_pedido.html' (ver Passo 6)
+    return render(request, 'detalhes_pedido.html', context)

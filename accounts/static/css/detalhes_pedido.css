@@ -1,0 +1,132 @@
+.detail-container {
+            max-width: 900px;
+            margin: 30px auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            font-family: Arial, sans-serif;
+            color: #0b1b39;
+            text-decoration: none;
+        }
+
+        /* Estilos para o cabeçalho do pedido */
+        .detail-header {
+            border-bottom: 2px solid #eee;
+            padding-bottom: 1.5rem;
+            margin-bottom: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .detail-header h1 {
+            font-size: 2.2rem;
+            color: #0b1b39;
+            margin-bottom: 0.5rem;
+            text-decoration: none;
+        }
+
+        .detail-header p {
+            font-size: 1rem;
+            color: #0b1b39;
+            margin: 0;
+            text-decoration: none;
+        }
+
+        .detail-header .status {
+            font-weight: bold;
+            padding: 0.3rem 0.6rem;
+            border-radius: 6px;
+            color: white;
+            text-decoration: none;
+        }
+
+        .detail-header .aguardando_pagamento { background-color: #ffc107; }
+        .detail-header .pago { background-color: #28a745; }
+        .detail-header .enviado { background-color: #007bff; }
+        .detail-header .entregue { background-color: #17a2b8; }
+        .detail-header .cancelado { background-color: #dc3545; }
+
+        /* Estilos para a seção de itens do pedido */
+        .order-items h2 {
+            font-size: 1.6rem;
+            color: #0b1b39;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 0.8rem;
+            text-decoration: none;
+        }
+
+        .item-detail {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid #f2f2f2;
+            text-decoration: none;
+        }
+
+        .item-detail:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+            text-decoration: none;
+        }
+
+        .item-detail img {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            object-fit: cover;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            text-decoration: none;
+        }
+
+        .item-detail div {
+            flex-grow: 1;
+            text-decoration: none;
+        }
+
+        .item-detail div p {
+            margin: 0.4rem 0;
+            font-size: 1rem;
+            color: #0b1b39;
+            text-decoration: none;
+        }
+
+        .item-detail div p strong {
+            font-weight: bold;
+            color: #0b1b39;
+            text-decoration: none;
+        }
+
+        /* Estilos para o link de voltar */
+        .back-link-container {
+            margin-top: 3rem;
+            text-align: left;
+            text-decoration: none;
+        }
+
+        .back-link-container a.btn {
+            display: inline-block;
+            background-color: #0b1b39;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none !important;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-link-container a.btn:hover {
+            background-color: #1a237e;
+            text-decoration: none;
+        }
+
+        /* Estilos para mensagem de pedido vazio */
+        .order-items p {
+            font-style: italic;
+            color: #0b1b39;
+            text-decoration: none;
+        }

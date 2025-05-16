@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Pedido #{{ pedido.id }}</title>
+    <link rel="stylesheet" href="{% static 'css/detalhes_pedido.css' %}">
+    <style>
+        /* Estilos adicionais se necessário */
+        .detail-container { max-width: 800px; margin: auto; background-color: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 0 8px rgba(0,0,0,0.1); text-decoration: none; }
+        .detail-header { border-bottom: 1px solid #eee; padding-bottom: 1rem; margin-bottom: 1.5rem; }
+        .item-detail p { margin: 0.3rem 0; }
+    </style>
+</head>
+<body>
+     {% include 'base.html' %}
+
+    <main class="detail-container">
+        <div class="detail-header">
+            <h1>Detalhes do Pedido #{{ pedido.id }}</h1>
+            <p><strong>Data:</strong> {{ pedido.data_pedido|date:"d/m/Y H:i" }}</p>
+            <p><strong>Status:</strong> <span class="status {{ pedido.status }}">{{ pedido.get_status_display }}</span></p>
+            <p><strong>Valor Total:</strong> R$ {{ pedido.valor_total|floatformat:2 }}</p>
+            {# Adicione outras informações se tiver (endereço, rastreio, etc.) #}
+        </div>
+
+        <h2>Itens do Pedido</h2>
+        <div class="order-items">
+            {% for item in pedido.itens.all %}
+                <div class="item item-detail">
+                    <img src="{{ item.produto.imagem|default:'https://via.placeholder.com/60' }}" alt="{{ item.nome_produto }}">
+                    <div>
+                        <p><strong>{{ item.nome_produto }}</strong></p>
+                        <p>Quantidade: {{ item.quantidade }}</p>
+                        <p>Preço Unitário: R$ {{ item.preco_item|floatformat:2 }}</p>
+                        <p>Subtotal: R$ {{ item.get_subtotal|floatformat:2 }}</p>
+                    </div>
+                </div>
+            {% empty %}
+                <p>Não há itens neste pedido.</p>
+            {% endfor %}
+        </div>
+
+        <div style="margin-top: 2rem;">
+            <a href="{% url 'lista_pedidos' %}" class="btn">Voltar para Meus Pedidos</a>
+        </div>
+    </main>
+</body>
+</html>

@@ -20,7 +20,8 @@ from accounts.views import (
     register_view, login_view, custom_logout, catalogo_view, home_view,
     painel_view, detalhes_produto, carrinho_view, editar_view,
     addcarrinho_view, remover_item_view, atualizar_item_view,
-    obter_carrinho_view, finalizar_compra_view
+    obter_carrinho_view, finalizar_compra_view, lista_pedidos_view,
+    detalhes_pedido_view
 )
 
 urlpatterns = [
@@ -40,4 +41,6 @@ urlpatterns = [
     path('carrinho/atualizar/<int:produto_id>/', atualizar_item_view, name='atualizar_item'),
     path('carrinho/obter/', obter_carrinho_view, name='obter_carrinho'),
     path('carrinho/finalizar/', finalizar_compra_view, name='finalizar_compra'),
+    path('meus-pedidos/', lista_pedidos_view, name='lista_pedidos'),
+    path('meus-pedidos/<int:pedido_id>/', detalhes_pedido_view, name='detalhes_pedido'),
 ]

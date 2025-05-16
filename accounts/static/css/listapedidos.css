@@ -1,0 +1,28 @@
+
+.status {
+  /* ... seus estilos existentes para status ... */
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: white;
+  text-transform: capitalize; /* Para deixar a primeira letra maiúscula */
+}
+
+/* Cores para cada status (ajuste as cores como preferir) */
+.status.aguardando_pagamento {
+  background-color: #ffc107; /* Amarelo */
+  color: #333; /* Texto mais escuro para amarelo */
+}
+.status.processando {
+  background-color: #17a2b8; /* Azul claro */
+}
+.status.enviado {
+  background-color: #007bff; /* Azul */
+}
+.status.entregue {
+  background-color: #28a745; /* Verde (você já tinha parecido) */
+}
+.status.cancelado {
+  background-color: #dc3545; /* Vermelho */
+}
